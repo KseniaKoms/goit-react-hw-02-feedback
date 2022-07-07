@@ -1,9 +1,8 @@
 import React from 'react';
 
-const FeedbackStatistics = ({ good, neutral, bad, total, positivePercentage }) => {
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
     return (
         <div>
-            <h2>Statistics</h2>
             <p>Good: {good}</p>
             <p>Neutral: {neutral}</p>
             <p>Bad: {bad}</p>
@@ -13,4 +12,5 @@ const FeedbackStatistics = ({ good, neutral, bad, total, positivePercentage }) =
     )
 }
 
-export default FeedbackStatistics
+export default Statistics
+

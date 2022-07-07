@@ -1,6 +1,6 @@
 import React from "react";
 
-const FeedbackButtons = () => {
+const FeedbackOptions = () => {
     return (
         <div>
             <button type="button">Good</button>
@@ -10,4 +10,4 @@ const FeedbackButtons = () => {
     )
 }
 
-export default FeedbackButtons
+export default FeedbackOptions
