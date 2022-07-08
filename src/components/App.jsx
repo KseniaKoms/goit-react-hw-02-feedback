@@ -8,40 +8,52 @@ import Notification from './Notification';
 class App extends Component {
 
   state = {
-  good: 3,
-  neutral: 2,
-  bad: 2,
-    }
+    good: 0,
+    neutral: 0,
+    bad: 0
+  }
+
+  handleOptionClick = (option) => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }))
+    
+  }
 
   countTotalFeedback = () => {
     return Object.values(this.state).reduce((total, value) => total + value)
   }
-    
+
   countPositiveFeedbackPercentage = (total) => {
     return Math.round(this.state.good / total * 100);
   }
 
-  render() {
+  render () {
+
+    const { good, neutral, bad } = this.state;
+    const options = Object.keys(this.state);
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage(total);
-    return (
-      <>
-        <Section title="Please leave feedback">
-          <FeedbackOptions />
-        </Section>
-        
-        <Section title="Statistics">
-        <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={total}
-            positivePercentage={positivePercentage} 
-          />
-        </Section>
-      </>
-    )
+    
+   return  (
+   <>
+     <Section title="Please leave feedback">
+         <FeedbackOptions handleOptionClick={this.handleOptionClick} options={options} />
+     </Section>
+     <Section title="Statistics">
+       {total === 0
+         ? <Notification message="There is no feedback" />
+         : <Statistics
+           good={good}
+           neutral={neutral}
+           bad={bad}
+           total={total}
+           positivePercentage={positivePercentage}>
+         </Statistics>}
+     </Section>
+   </>
+  )
   }
-};
+}
 
 export default App
